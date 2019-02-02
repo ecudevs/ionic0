@@ -22,14 +22,34 @@ export class Tab1Page implements OnInit, OnChanges {
   ngOnChanges() {}
 
   getProductos() {
-    this.productos = this.productoService.getProductos();
+    this.productoService.getProductos().subscribe((data: any) => {
+      if (data.success) {
+        this.productos = data.productos;
+      } else {
+        console.log(data.error);
+      }
+    });
   }
 
   guardarProducto(producto) {
-    if (producto.indice === 0 || producto.indice) {
-      this.productos[producto.indice] = producto;
+    if (producto._id) {
+      this.productoService.actualizar(producto).subscribe((data: any) => {
+        if (data.success) {
+          console.log('Guardado');
+          this.getProductos();
+        } else {
+          console.log('Error');
+        }
+      });
     } else {
-      this.productos.push(producto);
+      this.productoService.insert(producto).subscribe((data: any) => {
+        if (data.success) {
+          console.log('Guardado');
+          this.getProductos();
+        } else {
+          console.log('Error');
+        }
+      });
     }
   }
 

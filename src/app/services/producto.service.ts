@@ -1,39 +1,32 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  constructor() {}
+  constructor(private http: Http) {}
 
   getProductos() {
-    return [
-      {
-        foto:
-          'https://http2.mlstatic.com/cerveza-corona-D_NQ_NP_979411-MLC20550406761_012016-F.jpg',
-        descripcion: '6 pack coronas',
-        precio: 15,
-        categoria: 'Cervezas',
-        stock: 20,
-        fecha: new Date()
-      },
-      {
-        foto:
-          'https://http2.mlstatic.com/cerveza-corona-D_NQ_NP_979411-MLC20550406761_012016-F.jpg',
-        descripcion: '6 pack coronoa',
-        precio: 15,
-        categoria: 'Cervezas',
-        stock: 20,
-        estado: 'I'
-      },
-      {
-        foto:
-          'https://http2.mlstatic.com/cerveza-corona-D_NQ_NP_979411-MLC20550406761_012016-F.jpg',
-        descripcion: '6 pack coronoa',
-        precio: 15,
-        categoria: 'Cervezas',
-        stock: 20
-      }
-    ];
+    return this.http.get('http://localhost:9000/producto/').pipe(
+      map((response: Response) => {
+        return response.json();
+      })
+    );
+  }
+  insert(producto) {
+    return this.http.post('http://localhost:9000/producto/', producto).pipe(
+      map((response: Response) => {
+        return response.json();
+      })
+    );
+  }
+  actualizar(producto) {
+    return this.http.put('http://localhost:9000/producto/', producto).pipe(
+      map((response: Response) => {
+        return response.json();
+      })
+    );
   }
 }

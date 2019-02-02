@@ -1,0 +1,42 @@
+<ion-content>
+  <h3>Producto</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Foto url</ion-label>
+      <ion-input [(ngModel)]="producto.foto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input [(ngModel)]="producto.descripcion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input [(ngModel)]="producto.precio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label position="floating">Categoria</ion-label>
+      <ion-input [(ngModel)]="producto.categoria"></ion-input> -->
+      <ion-label>Categoria</ion-label>
+      <ion-select
+        okText="Listo"
+        cancelText="Cancelar"
+        [(ngModel)]="producto.categoria"
+      >
+        <ion-select-option
+          *ngFor="let categoria of categorias"
+          [value]="categoria.value"
+        >
+          {{ categoria.text }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input [(ngModel)]="producto.stock"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="_guardar()" expand="full" shape="round" color="danger">
+    Guardar
+    <ion-icon name="add-circle-outline"></ion-icon>
+  </ion-button>
+</ion-content>

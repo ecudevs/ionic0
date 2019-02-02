@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-img [src]="producto.foto"></ion-img>
+  <ion-card-header>
+    <h3 class="precio">{{ producto.precio | currency: "EUR" }}</h3>
+    <ion-card-subtitle>{{ producto.categoria }}</ion-card-subtitle>
+    <ion-card-title>{{ producto.descripcion }}</ion-card-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <p>{{ producto.fecha | date: "dd/MM/yyyy" }}</p>
+        </ion-col>
+        <ion-col>
+          <p>{{ producto.stock }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+  <ion-button (click)="_agregar()" expand="full" shape="round" color="danger">
+    Agregar
+    <ion-icon name="add-circle-outline"></ion-icon>
+  </ion-button>
+  <ion-button (click)="_editar()" expand="full" shape="round" color="warning">
+    Editar
+  </ion-button>
+</ion-card>

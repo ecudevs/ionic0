@@ -1,5 +1,7 @@
 {
   "name": "ecu-mmerce",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
